@@ -23,7 +23,7 @@ function App() {
 				</a>
 				<Separator />
 				<div className="flex flex-col gap-1">
-					<h2 className="text-lg font-bold">See the simple-shadcn-cli at </h2>
+					<h2 className="text-lg font-bold">See simple-shadcn-cli at </h2>
 					<a
 						href="https://github.com/Alwurts/simple-shadcn-cli"
 						rel="noreferrer"
