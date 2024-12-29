@@ -1,18 +1,14 @@
 {
-  "name": "animated-badge",
-  "type": "registry:ui",
-  "description": "A shadcn badge with framer motion entry animation",
-  "dependencies": [
-    "framer-motion"
-  ],
-  "registryDependencies": [
-    "badge"
-  ],
-  "files": [
-    {
-      "path": "ui/animated-badge.tsx",
-      "content": "\"use client\";\n\nimport { Badge, type BadgeProps } from \"@/components/ui/badge\";\nimport { cn } from \"@/lib/utils\";\nimport { motion } from \"framer-motion\";\n\ninterface AnimatedBadgeProps extends BadgeProps {\n\tanimate?: boolean;\n\tdelay?: number;\n}\n\nexport function AnimatedBadge({\n\tchildren,\n\tclassName,\n\tanimate = true,\n\tdelay = 0,\n\t...props\n}: AnimatedBadgeProps) {\n\treturn (\n\t\t<motion.div\n\t\t\tinitial={animate ? { opacity: 0, scale: 0.8 } : undefined}\n\t\t\tanimate={animate ? { opacity: 1, scale: 1 } : undefined}\n\t\t\ttransition={{\n\t\t\t\tduration: 0.3,\n\t\t\t\tdelay,\n\t\t\t\tease: [0, 0.71, 0.2, 1.01],\n\t\t\t}}\n\t\t>\n\t\t\t<Badge className={cn(className)} {...props}>\n\t\t\t\t{children}\n\t\t\t</Badge>\n\t\t</motion.div>\n\t);\n}\n\nAnimatedBadge.displayName = \"AnimatedBadge\";\n",
-      "type": "registry:ui"
-    }
-  ]
+	"name": "animated-badge",
+	"type": "registry:ui",
+	"description": "A shadcn badge with framer motion entry animation.",
+	"dependencies": ["framer-motion"],
+	"registryDependencies": ["badge"],
+	"files": [
+		{
+			"path": "ui/animated-badge.tsx",
+			"content": "\"use client\";\n\nimport { Badge, type BadgeProps } from \"@/components/ui/badge\";\nimport { cn } from \"@/lib/utils\";\nimport { motion } from \"framer-motion\";\n\ninterface AnimatedBadgeProps extends BadgeProps {\n\tanimate?: boolean;\n\tdelay?: number;\n}\n\nexport function AnimatedBadge({\n\tchildren,\n\tclassName,\n\tanimate = true,\n\tdelay = 0,\n\t...props\n}: AnimatedBadgeProps) {\n\treturn (\n\t\t<motion.div\n\t\t\tinitial={animate ? { opacity: 0, scale: 0.8 } : undefined}\n\t\t\tanimate={animate ? { opacity: 1, scale: 1 } : undefined}\n\t\t\ttransition={{\n\t\t\t\tduration: 0.3,\n\t\t\t\tdelay,\n\t\t\t\tease: [0, 0.71, 0.2, 1.01],\n\t\t\t}}\n\t\t>\n\t\t\t<Badge className={cn(className)} {...props}>\n\t\t\t\t{children}\n\t\t\t</Badge>\n\t\t</motion.div>\n\t);\n}\n\nAnimatedBadge.displayName = \"AnimatedBadge\";\n",
+			"type": "registry:ui"
+		}
+	]
 }
