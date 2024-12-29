@@ -1,7 +1,7 @@
 {
   "name": "animated-badge",
   "type": "registry:ui",
-  "description": "A badge with an entrance animation",
+  "description": "A shadcn badge with framer motion entry animation",
   "dependencies": [
     "framer-motion"
   ],
