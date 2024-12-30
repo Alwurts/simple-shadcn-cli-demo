@@ -103,14 +103,29 @@ function App() {
 							simple-shadcn-cli-demo
 						</h1>
 						<p className="text-base sm:text-lg text-muted-foreground">
-							A example documentation site for the simple-shadcn-cli package.
+							A example documentation site with a custom shadcn CLI registry
+							built with simple-shadcn-cli.
 						</p>
-						<a
-							href="https://github.com/Alwurts/simple-shadcn-cli"
-							className="text-muted-foreground underline"
-						>
-							GitHub repository
-						</a>
+						<div className="flex flex-col gap-2">
+							<span className="text-muted-foreground">
+								<a
+									href="https://github.com/Alwurts/simple-shadcn-cli-demo"
+									className="text-foreground underline"
+								>
+									simple-shadcn-cli-demo
+								</a>{" "}
+								repository
+							</span>
+							<span className="text-muted-foreground">
+								<a
+									href="https://github.com/Alwurts/simple-shadcn-cli"
+									className="text-foreground underline"
+								>
+									simple-shadcn-cli
+								</a>{" "}
+								repository
+							</span>
+						</div>
 					</div>
 
 					<div className="grid gap-4 sm:gap-8">
