@@ -1,50 +1,77 @@
-# React + TypeScript + Vite
+# simple-shadcn-cli-demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a demo repository showcasing how to use [simple-shadcn-cli](https://github.com/Alwurts/simple-shadcn-cli) to build a shadcn component library. It serves as a template and reference implementation for creating your own shadcn component libraries.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The repository follows a clean and organized structure in the `src/registry` folder:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+src/registry/
+├── index.ts          # Main entry point combining all registry items
+├── registry-ui.ts    # UI components registry definitions
+├── registry-hook.ts  # Hooks registry definitions
+├── ui/              # UI component implementations
+└── hooks/           # Hook implementations
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Registry Configuration
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Components are defined using TypeScript with proper typing from `simple-shadcn-cli/types`. Each component in the registry specifies:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
+- `name`: Unique identifier for the component
+- `type`: Registry type (e.g., "registry:ui" or "registry:hook")
+- `description`: Clear description of the component's purpose
+- `dependencies`: Required npm packages
+- `devDependencies`: Required dev npm packages
+- `registryDependencies`: Required shadcn components
+- `files`: Source file locations
+
+Example registry configuration:
+
+```typescript
+export const ui: Registry = [
+  {
+    name: "loading-button",
+    type: "registry:ui",
+    description: "A button component with loading state using shadcn's Button.",
+    dependencies: ["lucide-react"],
+    registryDependencies: ["button"],
+    files: [{ type: "registry:ui", path: "ui/loading-button.tsx" }],
   },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+  // ... more components
+];
 ```
+
+### Example Components
+
+The demo includes several example components:
+
+- `loading-button`: A button with loading state
+- `animated-badge`: A badge with Framer Motion animations
+- `confetti-button`: A button that triggers confetti effects
+
+## Using This Template
+
+1. Clone this repository as a starting point
+2. Follow the same structure for your components:
+   - Define components in the `ui/` or `hooks/` folders
+   - Register them in `registry-ui.ts` or `registry-hook.ts`
+   - Combine registries in `index.ts`
+3. Use the build command to generate distributable registry files:
+
+   ```bash
+   npm run build:registry
+   ```
+
+4. Publish your website an access the registry at `https://<your-website-name>/registry/<component-name>.json`
+
+## Build Process
+
+The repository uses `simple-shadcn-cli build` to:
+
+- Process all component files
+- Generate JSON files in the `public/registry` directory
+- Create distributable versions of your components
+
+For more information about the CLI tool and its features, visit the [simple-shadcn-cli repository](https://github.com/Alwurts/simple-shadcn-cli).
