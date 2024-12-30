@@ -129,7 +129,7 @@ function App() {
 									<div key={component.title} className="py-6">
 										<ComponentCard {...component} />
 										<InstallCommand
-											url="https://simple-shadcn-cli.vercel.app/registry"
+											url="https://simple-shadcn-cli-demo.vercel.app/registry"
 											componentName={component.installName}
 										/>
 									</div>
@@ -151,7 +151,7 @@ function App() {
 									<div key={hook.title} className="py-6">
 										<ComponentCard {...hook} />
 										<InstallCommand
-											url="https://simple-shadcn-cli.vercel.app/registry"
+											url="https://simple-shadcn-cli-demo.vercel.app/registry"
 											componentName={hook.installName}
 										/>
 									</div>
