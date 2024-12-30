@@ -1,0 +1,19 @@
+{
+  "name": "confetti-button",
+  "type": "registry:ui",
+  "description": "A button that shoots confetti when clicked.",
+  "dependencies": [
+    "canvas-confetti",
+    "@types/canvas-confetti"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "ui/confetti-button.tsx",
+      "content": "import { Button } from \"@/components/ui/button\";\nimport type { ButtonProps } from \"@/components/ui/button\";\nimport confetti from \"canvas-confetti\";\nimport { forwardRef } from \"react\";\n\nexport interface ConfettiButtonProps extends ButtonProps {\n\tconfettiConfig?: confetti.Options;\n}\n\nexport const ConfettiButton = forwardRef<\n\tHTMLButtonElement,\n\tConfettiButtonProps\n>(({ onClick, confettiConfig, ...props }, ref) => {\n\tconst handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {\n\t\tconst rect = (e.target as HTMLElement).getBoundingClientRect();\n\t\tconst x = (rect.left + rect.width / 2) / window.innerWidth;\n\t\tconst y = (rect.top + rect.height / 2) / window.innerHeight;\n\n\t\tconfetti({\n\t\t\tparticleCount: 100,\n\t\t\tspread: 70,\n\t\t\torigin: { x, y },\n\t\t\t...confettiConfig,\n\t\t});\n\n\t\tonClick?.(e);\n\t};\n\n\treturn <Button ref={ref} onClick={handleClick} {...props} />;\n});\n",
+      "type": "registry:ui"
+    }
+  ]
+}

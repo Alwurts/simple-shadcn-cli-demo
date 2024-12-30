@@ -1,0 +1,18 @@
+{
+  "name": "loading-button",
+  "type": "registry:ui",
+  "description": "A button component with loading state using shadcn's Button.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "ui/loading-button.tsx",
+      "content": "\"use client\";\n\nimport { Button } from \"@/components/ui/button\";\nimport { Loader2 } from \"lucide-react\";\nimport { useState } from \"react\";\n\ninterface LoadingButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  children: React.ReactNode;\n}\n\nexport function LoadingButton({ children, onClick, ...props }: LoadingButtonProps) {\n  const [isLoading, setIsLoading] = useState(false);\n\n  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {\n    if (onClick) {\n      setIsLoading(true);\n      try {\n        await onClick(e);\n      } finally {\n        setIsLoading(false);\n      }\n    }\n  };\n\n  return (\n    <Button\n      onClick={handleClick}\n      disabled={isLoading}\n      {...props}\n    >\n      {isLoading && <Loader2 className=\"mr-2 h-4 w-4 animate-spin\" />}\n      {children}\n    </Button>\n  );\n} ",
+      "type": "registry:ui"
+    }
+  ]
+}

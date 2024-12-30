@@ -1,0 +1,12 @@
+{
+  "name": "use-local-storage",
+  "type": "registry:hook",
+  "description": "A hook to use local storage",
+  "files": [
+    {
+      "path": "hooks/use-local-storage.ts",
+      "content": "import { useState } from \"react\";\n\nexport function useLocalStorage<T>(key: string, initialValue: T) {\n\tconst [storedValue, setStoredValue] = useState<T>(() => {\n\t\ttry {\n\t\t\tconst item = window.localStorage.getItem(key);\n\t\t\treturn item ? JSON.parse(item) : initialValue;\n\t\t} catch (error) {\n\t\t\tconsole.error(\"Error reading from localStorage:\", error);\n\t\t\treturn initialValue;\n\t\t}\n\t});\n\n\tconst setValue = (value: T | ((val: T) => T)) => {\n\t\ttry {\n\t\t\tconst valueToStore = value instanceof Function ? value(storedValue) : value;\n\t\t\tsetStoredValue(valueToStore);\n\t\t\twindow.localStorage.setItem(key, JSON.stringify(valueToStore));\n\t\t} catch (error) {\n\t\t\tconsole.error(\"Error writing to localStorage:\", error);\n\t\t}\n\t};\n\n\treturn [storedValue, setValue] as const;\n} ",
+      "type": "registry:hook"
+    }
+  ]
+}
